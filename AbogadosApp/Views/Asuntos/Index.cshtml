@@ -1,0 +1,79 @@
+﻿@model AbogadosApp.ViewModels.AsuntoClienteViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente.Nombre" class="control-label"></label>
+                <input asp-for="Cliente.Nombre" class="form-control" />
+                <span asp-validation-for="Cliente.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cliente.Apellido" class="control-label"></label>
+                <input asp-for="Cliente.Apellido" class="form-control" />
+                <span asp-validation-for="Cliente.Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cliente.Direccion" class="control-label"></label>
+                <input asp-for="Cliente.Direccion" class="form-control" />
+                <span asp-validation-for="Cliente.Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cliente.Telefono" class="control-label"></label>
+                <input asp-for="Cliente.Telefono" class="form-control" />
+                <span asp-validation-for="Cliente.Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h4>Asuntos</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Asuntos.First().Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asuntos.First().Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asunto in Model.Asuntos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => asunto.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => asunto.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => asunto.Descripcion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@asunto.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@asunto.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@asunto.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
